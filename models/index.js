@@ -5,20 +5,10 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require(__dirname + '/../config/db.json')[env];
 const db = {};
 
 let sequelize;
-
-config.authSwitchHandler = (unused, cb) => {
-  // workaround for node mysql bug #1507
-  if (pluginName === 'auth_socket') {
-    cb(null, Buffer.alloc(0));
-  } else {
-    cb(new Error("Unsupported auth plugin"));
-  }
-};
-
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
