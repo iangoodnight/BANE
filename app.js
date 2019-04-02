@@ -20,18 +20,16 @@ var session = require('express-session');
 var passport = require('./config/passport');
 // 'Morgan' (named after 'Dexter') logs HTTP requests to the console for use in development.
 var logger = require('morgan');
-// Recompile .scss or .sass files automattically for express based http servers.
+// Recompile .scss or .sass files automatically for express based http servers.
 var sassMiddleware = require('node-sass-middleware');
+// Handlebars support IS built into Express, but the express-handlebars package handles it a little nicer.
+var exphbs = require('express-handlebars');
 
 // End Module Dependencies -----------------
 
 // Local Dependencies -----------------
 // These are files we are creating and importing to be used in our app instance.
-
-// Routes are instances of express.Router() exported as 'router'.
-var indexRouter = require('./routes/index'); // routes for our homepage
-var apiRouter = require('./routes/api-routes'); // routes for our API
-var usersRouter = require('./routes/users'); // user routes
+var routes = require('./routes');
 
 // End Local Dependencies
 
@@ -42,8 +40,13 @@ var app = express();
 
 // app.set() is used to dictate application settings to the express instance stored within the variable 'app'.
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));  // Sets path to our 'views' directory with our .hbs files.
 app.set('view engine', 'hbs');  // Sets up handlebars as our view engine called by res.render().
+app.engine('hbs', exphbs({  // Configure our handlebars instance
+  extname: 'hbs',
+  defaultLayout: 'main',
+  layoutsDir: __dirname + '/views/layouts',
+  partialsDir: __dirname + 'views/partials'
+}));
 
 // Middleware
 // At this point we are loading our middleware, in the order it is to be called, on every http request.
@@ -59,15 +62,18 @@ app.use(sassMiddleware({ // Recompile .scss or .sass files automattically for ex
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public'))); // Dictates that root directory from which to serve static assets.
+app.use('/javascripts', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+app.use('/javascripts', express.static(__dirname + '/node_modules/popper.js/dist/umd')); // redirect popper.js JS
+app.use('/javascripts', express.static(__dirname + '/node_modules/jquery/dist')); // redirect jQuery JS
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect bootstrap css
 // We need to use sessions to keep track of our user's login status.
 app.use(session({ secret: 'Leviathan', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Handle our routes as imported by our 'router' instances.
-app.use('/', indexRouter);
-app.use('/api', apiRouter);
-app.use('/users', usersRouter);
+app.use(routes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
