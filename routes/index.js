@@ -1,6 +1,4 @@
 // Global Dependencies
-// Require our custom middleware to check if a user is logged in
-var isAuthenticated = require('../config/middleware/isAuthenticated');
 // Import the 'express' module...
 var express = require('express');
 // ..to expose the express.Router() function

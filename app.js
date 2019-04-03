@@ -45,7 +45,7 @@ app.engine('hbs', exphbs({  // Configure our handlebars instance
   extname: 'hbs',
   defaultLayout: 'main',
   layoutsDir: __dirname + '/views/layouts',
-  partialsDir: __dirname + 'views/partials'
+  partialsDir: __dirname + '/views/partials'
 }));
 
 // Middleware

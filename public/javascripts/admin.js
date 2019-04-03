@@ -29,19 +29,31 @@ $(document).ready(function() {
   // Does a post to the signup route. If succesful, we are redirected to the members page
   // Otherwise we log any errors
   function signUpUser(username, email, password) {
-    console.log('username: ' + username + ' email: ' + email + ' password: ' + password);
+    // console.log('username: ' + username + ' email: ' + email + ' password: ' + password);
     $.post("/api/admin", {
       username: username,
       email: email,
       password: password
-    }).then(function(data) {
-      window.location.replace(data);
-      // If there's an error, handle it by throwing up a boostrap alert
-    }).catch(handleLoginErr);
+    })
+    .then(handleResponse);
   }
 
-  function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+  function formatErr(err) {
+    return err.charAt(0).toUpperCase() + err.slice(1) + '.';  // Format our error response
+  }
+
+  function handleUserErr(err) {
+    console.log(err);
+    $("#alert .msg").text(formatErr(err.errors[0].message));
     $("#alert").fadeIn(500);
+  }
+
+  function handleResponse(err) {
+    if (err.errors) {  // check to see if any error message is returned.
+      handleUserErr(err);
+    } else {
+      alert('Successfully added user.');  // I'd like to replace this with a modal
+      location.reload();  // reload to display new data
+    } 
   }
 });
