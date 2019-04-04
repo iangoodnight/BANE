@@ -7,6 +7,14 @@ var bcrypt = require("bcrypt-nodejs");
 //Set it as export because we will need it required on the server
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     username: {
     	type: DataTypes.STRING,
     	allowNull: false,
@@ -15,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     email: {
     	type: DataTypes.STRING,
     	allowNull: false,
-    	unique: true,
     	validate: {
     		isEmail: true
     	}
