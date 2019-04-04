@@ -3,7 +3,7 @@
 <div class="row">
   {{#each user}}
   <div class="col-md-12">
-    <pre>{{this.username}}</pre>
+    <pre>{{this.firstName}} {{this.lastName}}</pre>
   </div>
   {{/each}}
 </div>  
@@ -12,14 +12,24 @@
 
 <form class="signup">
   <div class="form-group">
+    <label for="firstName-input">First Name</label>
+    <input type="text" class="form-control" id="firstName-input" aria-describedby="firstNameHelp" placeholder="Enter First Name">
+    <small id="firstNameHelp" class="form-text text-muted">Please enter First Name.</small>
+  </div>
+  <div class="form-group">
+    <label for="username-input">Last Name</label>
+    <input type="text" class="form-control" id="lastName-input" aria-describedby="lastNameHelp" placeholder="Enter lastName">
+    <small id="lastNameHelp" class="form-text text-muted">Please enter Last Name.</small>
+  </div>
+  <div class="form-group">
     <label for="username-input">Username</label>
     <input type="text" class="form-control" id="username-input" aria-describedby="usernameHelp" placeholder="Enter Username">
-    <small id="UsernameHelp" class="form-text text-muted">Please enter username and password.</small>
+    <small id="UsernameHelp" class="form-text text-muted">Please enter username.</small>
   </div>
     <div class="form-group">
     <label for="username-input">Email</label>
     <input type="text" class="form-control" id="email-input" aria-describedby="emailHelp" placeholder="Enter Email">
-    <small id="emailHelp" class="form-text text-muted">Please enter username and password.</small>
+    <small id="emailHelp" class="form-text text-muted">Please enter Email.</small>
   </div>
   <div class="form-group">
     <label for="password-input">Password</label>

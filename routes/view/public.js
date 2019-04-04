@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 	// 'res.render()' renders a view and sends the rendered HTML back to the client. 
 	// res.render(view [, locals][, callback])
 	var admin; 
-	req.user ? admin = req.user.administrator: admin = false;
+	req.user ? admin = req.user.administrator: admin = false;  // Need to replace this with middleware
   console.log(req.user);
   res.render('index', { 
   	title: 'BANE',
@@ -27,11 +27,11 @@ router.get('/', function(req, res, next) {
 
 router.get('/admin', function(req, res, next) {
 	var admin; 
-	req.user ? admin = req.user.administrator: admin = false;
+	req.user ? admin = req.user.administrator: admin = false;  // Need to replace this with middleware
 	console.log(req);
 	db.User.findAll({
 		order: [
-			["username", "ASC"]
+			["firstName", "ASC"]
 		]
 	})
 	.then(function(dbUser) {
@@ -48,7 +48,7 @@ router.get('/admin', function(req, res, next) {
 
 router.get('/dashboard', function(req, res, next) {
 	var admin; 
-	req.user ? admin = req.user.administrator: admin = false;
+	req.user ? admin = req.user.administrator: admin = false;  // Need to replace this with middleware
 	if (req.user) {
 		res.render('dashboard', { 
 			user: req.user,
