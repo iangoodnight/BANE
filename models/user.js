@@ -16,14 +16,18 @@ module.exports = (sequelize, DataTypes) => {
     	type: DataTypes.BOOLEAN,
     	allowNull: false,
       default: true
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: true
+      }
     }
   });
   User.associate = function(models) {
     // associations can be defined here
     User.hasOne(models.Login, {
-      onDelete: "cascade"
-    });
-    User.hasMany(models.Email, {
       onDelete: "cascade"
     });
   };
