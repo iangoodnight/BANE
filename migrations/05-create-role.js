@@ -1,28 +1,27 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Roles', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        allowNull: false,
+      role: {
         type: Sequelize.STRING
       },
-      lastName: {
-        allowNull: false,
-        type: Sequelize.STRING
+      permissions1: {
+        type: Sequelize.BOOLEAN
       },
-      username: {
-        allowNull: false,
-        type: Sequelize.STRING
+      permissions2: {
+        type: Sequelize.BOOLEAN
       },
-      email: {
-        allowNull: false,
-        type: Sequelize.STRING
+      permissions3: {
+        type: Sequelize.BOOLEAN
+      },
+      permissions4: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -35,6 +34,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Roles');
   }
 };

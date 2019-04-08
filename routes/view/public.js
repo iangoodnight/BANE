@@ -31,7 +31,7 @@ router.get('/admin', function(req, res, next) {
 	console.log(req);
 	db.User.findAll({
 		order: [
-			["firstName", "ASC"]
+			["username", "ASC"]
 		]
 	})
 	.then(function(dbUser) {

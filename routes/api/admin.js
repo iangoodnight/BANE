@@ -1,5 +1,6 @@
 // Requiring our models and passport as we've configured it
 var db = require('../../models');
+// Require our user controller for Sequelize logic.
 var userController = require('../../controllers/users')
 // Require our configured 'Passport' for user authentication.
 var passport = require('../../config/passport');
