@@ -3,7 +3,7 @@
 <div class="row">
   {{#each user}}
   <div class="col-md-12">
-    <pre>{{this.firstName}} {{this.lastName}}</pre>
+    <pre>{{this.username}}</pre>
   </div>
   {{/each}}
 </div>  
@@ -12,9 +12,9 @@
 
 <form class="signup">
   <div class="form-group">
-    <label for="firstName-input">First Name</label>
-    <input type="text" class="form-control" id="firstName-input" aria-describedby="firstNameHelp" placeholder="Enter First Name">
-    <small id="firstNameHelp" class="form-text text-muted">Please enter First Name.</small>
+    <label for="employeeId-input">Employee ID</label>
+    <input type="text" class="form-control" id="employeeId-input" aria-describedby="employeeIdHelp" placeholder="Enter Employee ID">
+    <small id="employeeIdHelp" class="form-text text-muted">Please enter employee ID.</small>
   </div>
   <div class="form-group">
     <label for="username-input">Last Name</label>

@@ -7,13 +7,13 @@ module.exports = {
       // Return a promise to correctly handle asynchronicity.
 
       // Example:
-      return queryInterface.bulkInsert('People', [{
-        employeeId: 661,
-        lastName: 'Doe',
-        firstName: 'Jon',
-        createdAt: '2019-04-05',
-        updatedAt: '2019-04-05'
-      }], {});
+      // return queryInterface.bulkInsert('People', [{
+      //   employeeId: 661,
+      //   lastName: 'Doe',
+      //   firstName: 'Jon',
+      //   createdAt: '2019-04-05',
+      //   updatedAt: '2019-04-05'
+      // }], {});
     
   },
 

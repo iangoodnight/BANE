@@ -3,11 +3,25 @@ $(document).ready(function() {
   console.log("Admin Ready!");
   // Getting references to our form and input
   var signUpForm = $("form.signup");
-  var firstNameInput = $("input#firstName-input");
+  var employeeIdInput = $("input#employeeId-input");
   var lastNameInput = $("input#lastName-input");
   var usernameInput = $("input#username-input");
   var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
+
+  employeeIdInput.keyup(function(e) {
+    console.log(e);
+    findPeople(employeeIdInput.val().trim());
+    console.log(employeeIdInput.val().trim());
+  });
+
+  function findPeople(employeeId) {
+    var url = "/api/people/" + employeeId;
+    $.get(url)
+    .then(function(res) {
+      console.log(res);
+    })
+  }
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function(event) {
