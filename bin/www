@@ -17,10 +17,19 @@ var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
+ *Create Socket connection
+ */
+
+ // io.on('connection', () => {
+ //  console.log('a user is connected');
+ // });
+
+/**
  * Create HTTP server.
  */
 
 var server = http.createServer(app);
+var io = require('socket.io').listen(server);  // Link Socket.io
 
 models.sequelize.sync().then(function() { // sync our models to the db
   /**

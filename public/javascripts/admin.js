@@ -10,9 +10,10 @@ $(document).ready(function() {
   var passwordInput = $("input#password-input");
 
   employeeIdInput.keyup(function(e) {
-    console.log(e);
-    findPeople(employeeIdInput.val().trim());
-    console.log(employeeIdInput.val().trim());
+    var inputValue = employeeIdInput.val().trim();
+    if (inputValue.length === 4) {
+      findPeople(inputValue);
+    }
   });
 
   function findPeople(employeeId) {
@@ -20,7 +21,13 @@ $(document).ready(function() {
     $.get(url)
     .then(function(res) {
       console.log(res);
+      displayUser(res)
     })
+  }
+
+  function displayUser(userData) {
+    people = userData.people;
+    $("#user-space").text(people.firstName + " " + people.lastName);
   }
 
   // When the signup button is clicked, we validate the email and password are not blank

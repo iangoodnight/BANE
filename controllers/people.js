@@ -2,7 +2,8 @@
 // ==============================
 // Dependencies
 // Require our database models
-var db = require('../models');
+const db = require('../models');
+const Op = db.Sequelize.Op;
 
 module.exports = {
 	// Create
@@ -21,20 +22,18 @@ module.exports = {
 	// 	});
 	// }
 	// Retrieve
-	findAllById: function(req, res) {
-		console.log(req.params.employeeId);
-		console.log(typeOf(req.params.employeeId));
-		db.People.findAll({ 
-			limit: 10,
+	findOneById: function(req, res) {
+		console.log("employeeId: " + req.params.employeeId);
+		console.log("typeof: " + typeof req.params.employeeId);
+		db.People.findOne({ 
 			where: { 
-				employeeId: {
-					$contains: req.params.employeeId
-				}
+				employeeId: parseInt(req.params.employeeId)
 			}
-		}).then(function(assets) {
+		}).then(function(dbPeople) {
+			console.log(dbPeople)
 			return res.json({
 				msg: 'search results',
-				assets: assets
+				people: dbPeople
 			});
 		}).catch(function(err) {
 			console.log(err);

@@ -7,13 +7,15 @@ module.exports = {
       // Return a promise to correctly handle asynchronicity.
 
       // Example:
-      // return queryInterface.bulkInsert('People', [{
-      //   employeeId: 661,
-      //   lastName: 'Doe',
-      //   firstName: 'Jon',
-      //   createdAt: '2019-04-05',
-      //   updatedAt: '2019-04-05'
-      // }], {});
+      return queryInterface.bulkInsert('Users', [{
+        username: "ian.goodnight",
+        password: "password",
+        roleId: null,
+        employeeId: 3693,
+        active: true,
+        createdAt: '2019-04-05',
+        updatedAt: '2019-04-05'
+      }], {});
     
   },
 
@@ -23,7 +25,7 @@ module.exports = {
       // Return a promise to correctly handle asynchronicity.
 
       // Example:
-      return queryInterface.bulkDelete('People', null, {});
+      return queryInterface.bulkDelete('Users', null, {});
     
   }
 };
