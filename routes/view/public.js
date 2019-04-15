@@ -19,10 +19,36 @@ router.get('/', function(req, res, next) {
   	title: 'BANE',
   	user: req.user,
   	active: {
+		user: req.user ? true: false,
   		active_home: true,
   		admin: admin
   	} 
   })
+});
+
+router.get('/login', function(req, res, next) {
+	res.render('login', {
+		user: req.user
+	});
+});
+
+router.get('/directory', function(req, res, next) {
+	db.People.findAll({
+		order: [
+			["lastName", "ASC"]
+		]
+	})
+	.then(function(dbPeople) {
+		var hbsObject = {
+			user: req.user,
+			people: dbPeople,
+			active: {
+				user: req.user ? true: false,
+				active_directory: true
+			}
+		};
+		return res.render('directory', hbsObject);
+	});
 });
 
 router.get('/admin', function(req, res, next) {
@@ -36,8 +62,9 @@ router.get('/admin', function(req, res, next) {
 	})
 	.then(function(dbUser) {
 		var hbsObject = {
-			user: dbUser,
+			user: req.user,
 			active: {
+				user: req.user ? true: false,
 				active_admin: true,
 				admin: admin
 			}
@@ -53,6 +80,7 @@ router.get('/dashboard', function(req, res, next) {
 		res.render('dashboard', { 
 			user: req.user,
 			active: {
+				user: req.user ? true: false,
 				active_dashboard: true,
 				admin: admin
 			} 

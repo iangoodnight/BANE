@@ -17,7 +17,8 @@ module.exports = {
       },
       employeeId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        unique: true
       },
       active: {
         allowNull: false,

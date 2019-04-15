@@ -4,9 +4,7 @@ $(document).ready(function() {
   // Getting references to our form and input
   var signUpForm = $("form.signup");
   var employeeIdInput = $("input#employeeId-input");
-  var lastNameInput = $("input#lastName-input");
   var usernameInput = $("input#username-input");
-  var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
 
   employeeIdInput.keyup(function(e) {
@@ -34,36 +32,30 @@ $(document).ready(function() {
   signUpForm.on("submit", function(event) {
     event.preventDefault();
     var userData = {
-      firstName: firstNameInput.val().trim(),
-      lastName: lastNameInput.val().trim(),
       username: usernameInput.val().trim(),
-      email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
+      password: passwordInput.val().trim(),
+      employeeId: employeeIdInput.val().trim()
     };
     console.log(userData);
 
-    if (!userData.firstName || !userData.lastName || !userData.username || !userData.email || !userData.password) {
+    if (!userData.username || !userData.password || !userData.employeeId) {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.firstName, userData.lastName, userData.username, userData.email, userData.password);
-    firstNameInput.val("");
-    lastNameInput.val("");
+    signUpUser(userData.username, userData.password, userData.employeeId);
+    employeeIdInput.val("");
     usernameInput.val("");
-    emailInput.val("");
     passwordInput.val("");
   });
 
   // Does a post to the signup route. If succesful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(firstName, lastName, username, email, password) {
-    console.log('firstName: ' + firstName + ' lastName: ' + lastName + 'username: ' + username + ' email: ' + email + ' password: ' + password);
+  function signUpUser(username, password, employeeId) {
+    console.log('username: ' + username + ' password: ' + password);
     $.post("/api/admin", {
-      firstName: firstName,
-      lastName: lastName,
       username: username,
-      email: email,
-      password: password
+      password: password,
+      employeeId: employeeId
     })
     .then(handleResponse);
   }

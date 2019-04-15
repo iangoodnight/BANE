@@ -11,7 +11,7 @@ module.exports = {
 			username: req.body.username,
 			password: req.body.password,
 			roleId: null,
-			employeeId: 666,
+			employeeId: req.body.employeeId,
 			active: true
 		}).then(function(req) {
 			res.json({});

@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<a class="navbar-brand" href="#">BANE</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header" aria-controls="header" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">BANE</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header" 	aria-controls="header" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	
 		<div class="collapse navbar-collapse" id="header">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item {{#if active_home}}active{{/if}}">
@@ -14,6 +15,15 @@
 						{{/if}}
 					</a>
 				</li>
+				<li class="nav-item {{#if active_directory}}active{{/if}}">
+					<a class="nav-link" href="/directory">
+						Directory 
+						{{#if active_directory}}
+							<span class="sr-only">(current)</span>
+						{{/if}}
+					</a>
+				</li>
+				{{#if user}}
 				<li class="nav-item {{#if active_dashboard}}active{{/if}}">
 					<a class="nav-link" href="/dashboard">
 						Dashboard 
@@ -22,6 +32,7 @@
 						{{/if}}
 					</a>
 				</li>
+				{{/if}}
 				{{#if admin}}
 				<li class="nav-item {{#if active_admin}}active{{/if}}">
 					<a class="nav-link" href="/admin">
@@ -33,9 +44,15 @@
 				</li>
 				{{/if}}
 			</ul>
-			<form class="form-inline">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-			</form>
+			{{#if user}}
+			<a class="nav-link mr-sm-2" id="logout" href="/">
+				Logout
+			</a>
+			{{else}}
+			<a class="nav-link mr-sm-2" href="/login">
+				Login
+			</a>
+			{{/if}}
 		</div>
+	</div>
 </nav>

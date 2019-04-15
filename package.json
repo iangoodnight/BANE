@@ -8,6 +8,7 @@
     "lint": "eslint ./public/javascript"
   },
   "dependencies": {
+    "async": "^2.6.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
@@ -24,6 +25,7 @@
     "morgan": "~1.9.0",
     "mysql2": "^1.6.5",
     "node-sass-middleware": "0.11.0",
+    "nodemailer": "^6.1.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "popper.js": "^1.14.7",

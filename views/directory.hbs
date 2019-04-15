@@ -1,0 +1,15 @@
+<h1>Directory</h1>
+
+<div class="row">
+  {{#each people}}
+  <div class="col-md-12">
+    <pre>{{this.lastName}}, {{this.firstName}}</pre>
+  </div>
+  {{/each}}
+</div>
+
+{{!-- jQuery --}}
+<script src="/javascripts/jquery.min.js"></script>
+{{!-- Bootstrap Javascripts --}}
+<script src="/javascripts/popper.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
