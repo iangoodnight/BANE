@@ -4,7 +4,53 @@ body {
 a {
   color: #00B7FF; }
 
+main {
+  padding-top: 2rem; }
+
+.bd-search {
+  position: relative;
+  padding: 1rem 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+  .bd-search .form-control:focus {
+    border-color: purple;
+    box-shadow: 0 0 0 3px rgba(128, 0, 128, 0.25); }
+
+@media screen and (max-width: 991.98px) {
+  .omit-on-tablet {
+    display: none; } }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 48px 0px 0px 0px;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1); }
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */ }
+
+@supports (position: -webkit-sticky) or (position: sticky) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky; } }
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase; }
+
 #content {
   padding: 50px; }
+
+#directory {
+  max-width: 1400px;
+  margin: auto; }
 
 /*# sourceMappingURL=style.css.map */

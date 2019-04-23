@@ -12,8 +12,6 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 	// 'res.render()' renders a view and sends the rendered HTML back to the client. 
 	// res.render(view [, locals][, callback])
-	var admin; 
-	req.user ? admin = req.user.administrator: admin = false;  // Need to replace this with middleware
   console.log(req.user);
   res.render('index', { 
   	title: 'BANE',
@@ -21,14 +19,18 @@ router.get('/', function(req, res, next) {
   	active: {
 		user: req.user ? true: false,
   		active_home: true,
-  		admin: admin
+  		admin: req.user ? req.user.roleId: 0
   	} 
   })
 });
 
 router.get('/login', function(req, res, next) {
 	res.render('login', {
-		user: req.user
+		user: req.user,
+	  active: {
+			user: req.user ? true: false,
+		  admin: req.user ? req.user.roleId: 0
+	  }
 	});
 });
 
@@ -44,7 +46,8 @@ router.get('/directory', function(req, res, next) {
 			people: dbPeople,
 			active: {
 				user: req.user ? true: false,
-				active_directory: true
+				active_directory: true,
+				admin: req.user ? req.user.roleId: 0
 			}
 		};
 		return res.render('directory', hbsObject);
@@ -52,8 +55,6 @@ router.get('/directory', function(req, res, next) {
 });
 
 router.get('/admin', function(req, res, next) {
-	var admin; 
-	req.user ? admin = req.user.administrator: admin = false;  // Need to replace this with middleware
 	console.log(req);
 	db.User.findAll({
 		order: [
@@ -66,7 +67,7 @@ router.get('/admin', function(req, res, next) {
 			active: {
 				user: req.user ? true: false,
 				active_admin: true,
-				admin: admin
+		  	admin: req.user ? req.user.roleId: 0
 			}
 		};
 		return res.render('admin', hbsObject);
@@ -74,15 +75,14 @@ router.get('/admin', function(req, res, next) {
 });
 
 router.get('/dashboard', function(req, res, next) {
-	var admin; 
-	req.user ? admin = req.user.administrator: admin = false;  // Need to replace this with middleware
+	console.log(req.user);
 	if (req.user) {
 		res.render('dashboard', { 
 			user: req.user,
 			active: {
 				user: req.user ? true: false,
 				active_dashboard: true,
-				admin: admin
+		  	admin: req.user ? req.user.roleId: 0
 			} 
 		});
 	}

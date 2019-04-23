@@ -1,11 +1,84 @@
-<h1>Directory</h1>
+<div class="row" id="directory">
+	<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+		<div class="sidebar-sticky">
+			<form class="bd-search d-flex align-items-center">
+{{!-- 				<span style="position: relative; display: inline-block; direction: ltr;"> --}}
+					<input type="search" class="form-control ds-input" id="search-input" placeholder="Search..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" dir="auto" style="position: relative; vertical-align: top;">
+{{!-- 				</span> --}}
+			</form>
+			<ul class="nav flex-column">
+				<li class="nav-item">
+					<a class="nav-link active" href="#">Link</a>
+					<span class="sr-only">(current)</span>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link">Link</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link">Link</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link">Link</a>
+				</li>
+			</ul>
+			<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+				<span>Further Options</span>
+				<a class="d-flex align-items-center text-muted" href="#">
+		            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle">
+		            	<circle cx="12" cy="12" r="10"></circle>
+		            	<line x1="12" y1="8" x2="12" y2="16"></line>
+		            	<line x1="8" y1="12" x2="16" y2="12"></line>
+		            </svg>
+          		</a>
+          	</h6>
+          	<ul class="nav flex-column mb-2">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+          	</ul>
+		</div>
+	</nav>
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+		<h1>Directory</h1>
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Last Name</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Department</th>
+					<th scope="col" class="omit-on-tablet">Location</th>
+				</tr>
+			</thead>
+			<tbody>
+			  {{#each people}}
+				  <tr id="people-{{this.employeeId}}">
+				    <td>{{this.lastName}},</td>
+				    <td>{{this.firstName}}</td>
+				    <td>{{this.department}}</td>
+				    <td class="omit-on-tablet">{{this.location}}</td>
+				  </tr>
+			  {{/each}}
+	  	<tbody>
+		</table>
+	</main>
+</div>
 
-<div class="row">
-  {{#each people}}
-  <div class="col-md-12">
-    <pre>{{this.lastName}}, {{this.firstName}}</pre>
+{{!-- Modal - Abstract Later --}}
+<div class="modal fade" id="employee-details" tabindex="-1" role="dialog" aria-labelledby="employeeDetailsModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
   </div>
-  {{/each}}
 </div>
 
 {{!-- jQuery --}}
@@ -13,3 +86,5 @@
 {{!-- Bootstrap Javascripts --}}
 <script src="/javascripts/popper.min.js"></script>
 <script src="/javascripts/bootstrap.min.js"></script>
+{{!-- Local Javascripts --}}
+<script src="/javascripts/directory.js"></script>
