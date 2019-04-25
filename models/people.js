@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE'
     });
     People.hasOne(models.Extension, {
-      foreignKey: 'employeeId'
+      foreignKey: 'employeeId',
     });
     People.hasOne(models.Email, {
       foreignKey: 'employeeId',

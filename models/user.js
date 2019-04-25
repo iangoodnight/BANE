@@ -39,9 +39,10 @@ module.exports = (sequelize, DataTypes) => {
   });
   User.associate = function(models) {
     // associations can be defined here
-    // User.belongsTo(models.People, {
-    //   // onDelete: "cascade"
-    // });
+    User.belongsTo(models.People, {
+      foreignKey: 'employeeId',
+      // onDelete: "cascade"
+    });
   };
   // Creating a custom method for our User model. 
   //This will check if an unhashed password entered by the 

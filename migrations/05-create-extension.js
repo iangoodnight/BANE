@@ -29,6 +29,10 @@ module.exports = {
         type: Sequelize.DATE
       },
       employeeId: {
+        references: {
+          model: 'People',
+          key: 'employeeId'
+        },
         type: Sequelize.INTEGER,
         allowNull: true
       }

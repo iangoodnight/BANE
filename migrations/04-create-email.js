@@ -12,6 +12,10 @@ module.exports = {
         }
       },
       employeeId: {
+        references: {
+          model: 'People',
+          key: 'employeeId'
+        },
         type: Sequelize.INTEGER
       },
       createdAt: {

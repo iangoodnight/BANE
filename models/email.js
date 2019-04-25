@@ -16,12 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Email.associate = function(models) {
     // associations can be defined here
-    // models.Email.belongsTo(models.People, {
-    // 	onDelete: 'CASCADE',
-    // 	foreignKey: {
-    // 		allowNull: true
-    // 	}
-    // });
+    Email.belongsTo(models.People, {
+    	onDelete: 'CASCADE',
+    	foreignKey: 'employeeId',
+      as: 'employee'
+    });
   };
   return Email;
 };

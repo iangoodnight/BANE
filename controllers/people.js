@@ -19,10 +19,15 @@ module.exports = {
 			}]
 		}).then(dbPeople => {
 			console.log(dbPeople)
+			// var hbsObject = {
+			// 	msg: 'search results',
+			// 	person: dbPeople				
+			// }
 			return res.json({
 				msg: 'search results',
-				people: dbPeople
+				person: dbPeople
 			});
+			// res.render("partials/modal", hbsObject)
 		}).catch(err => {
 			console.log(err);
 			res.json(err);

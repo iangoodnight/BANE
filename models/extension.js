@@ -15,11 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Extension.associate = function(models) {
     // associations can be defined here
-    // models.Task.belongsTo(models.People, {
-    //   foreignKey: {
-    //     allowNull: true
-    //   }
-    // });
+    Extension.belongsTo(models.People, {
+      foreignKey: 'employeeId',
+      as: 'employee'
+    });
   };
   return Extension;
 };
