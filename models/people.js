@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     People.hasOne(models.User, {
       foreignKey: 'employeeId',
+      as: 'user',
       onDelete: 'CASCADE'
     });
     People.hasOne(models.Extension, {

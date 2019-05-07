@@ -18,7 +18,7 @@ $(document).ready(function() {
     	var newResult = "<h3>" + person.firstName + " " + person.lastName + "</h3>" +
     									"<h5>" + person.department + "<h5>" +
     									"<h5>" + person.location + "<h5>" +
-    									person["Email"] ? "<span class='text-muted'>" + person["Email"].email + "</span>"  :
+    									person["Email"].email ? "<span class='text-muted'>" + person["Email"].email + "</span>"  :
     										"<hr />" ;
     									// person["Extension"].ext ? "<span class='text-muted'>ext: " + person["Extension"].ext + "</span>" :
     									// 	"<hr />";

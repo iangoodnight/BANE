@@ -23,9 +23,6 @@ module.exports = (sequelize, DataTypes) => {
 
       }
     },
-    roleId: {
-      type: DataTypes.INTEGER
-    },
     employeeId: {
       allowNull: false,
       type: DataTypes.INTEGER,
@@ -41,8 +38,13 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     User.belongsTo(models.People, {
       foreignKey: 'employeeId',
+      as: 'employee'
       // onDelete: "cascade"
-    });
+    })
+    User.belongsToMany(models.Role, {
+      through: 'UsersRoles', 
+      foreignKey: 'username'
+    })
   };
   // Creating a custom method for our User model. 
   //This will check if an unhashed password entered by the 
